@@ -1,0 +1,20 @@
+Session 001 — End-to-End AI Lifecycle (Practical Overview)
+
+What I Learnt:
+  This session explained how AI systems evolve from raw data to deployed models, showing how data engineering, visualization, modeling, and MLOps connect in one lifecycle.
+
+Key Highlights:
+
+1. Evolution of Data Systems: From ODS → Data Warehouses → Data Lakes.
+  a. Learnt how ETL (Extract–Transform–Load) pipelines move data for analytics.
+2. Data Engineering Role: Building pipelines to ingest and clean structured & unstructured data using Big Data and Cloud tools (AWS S3, Hadoop etc.).
+3. Data Visualization: Using tools like Tableau and Matplotlib to turn data into insightful dashboards.
+4. Feature Engineering: Transforming raw records into meaningful features stored in feature stores for reuse.
+5. Modeling Stage: Explored Supervised, Unsupervised, Generative & Agentic AI approaches and roles (Data Scientist vs AI Engineer).
+6. Deployment & MLOps: Understood Batch vs Online (API) deployments, CI/CD automation (Jenkins, Docker, Kubernetes), and model monitoring for bias and fairness.
+7. Roles in the Lifecycle: Mapped the entire AI team — Data Engineer, Visualizer, Scientist, AI/ML Engineer, QA Tester, Project Manager — and their skill paths.
+8. AI vs ML vs DL vs Data Science: Clarified the hierarchy and how each fits into real-world AI projects.
+
+Takeaway
+
+> End-to-end AI is a team sport — data engineers build the foundation, scientists create intelligence, and MLOps keeps it alive in production.
