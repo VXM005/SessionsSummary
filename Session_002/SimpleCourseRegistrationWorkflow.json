@@ -1,0 +1,119 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Student Details",
+        "formDescription": "Form for gathering the student details in the course.",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Full Name", "placeholder": "First Name Last Name", "requiredField": true },
+            { "fieldLabel": "Email", "placeholder": "abc@xyz.com", "requiredField": true },
+            { "fieldLabel": "City", "placeholder": "City Name" }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [0, 0],
+      "id": "ON-FORM-SUBMIT-NODE-ID",
+      "name": "On form submission",
+      "webhookId": "REGENERATE_ME_WEBHOOK_ID"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "REDACTED",
+          "cachedResultUrl": "REDACTED"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "YOUR_SHEET_TAB_NAME_OR_gid=XXXXXX",
+          "mode": "list",
+          "cachedResultName": "REDACTED",
+          "cachedResultUrl": "REDACTED"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Full Name": "={{ $json['Full Name'] }}",
+            "Email": "={{ $json.Email }}",
+            "City": "={{ $json.City }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "Full Name", "displayName": "Full Name", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Email", "displayName": "Email", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "City", "displayName": "City", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [208, 0],
+      "id": "APPEND-ROW-NODE-ID",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_REF",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Hello  {{ $json['Full Name'] }}",
+        "emailType": "text",
+        "message": "Thanks for enrolling in the course!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [416, 0],
+      "id": "SEND-MESSAGE-NODE-ID",
+      "name": "Send a message",
+      "webhookId": "REGENERATE_ME_WEBHOOK_ID_GMAIL",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_REF",
+          "name": "YOUR_GMAIL_CREDENTIAL_NAME"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          { "node": "Append row in sheet", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          { "node": "Send a message", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "WORKFLOW-VERSION-ID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "YOUR_INSTANCE_ID"
+  },
+  "id": "YOUR_WORKFLOW_ID",
+  "tags": []
+}
