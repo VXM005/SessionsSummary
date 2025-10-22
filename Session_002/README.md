@@ -3,6 +3,8 @@
 Collect student details via an n8n Form, append them to a Google Sheet, and send a welcome email with Gmail.  
 This repo includes a redacted workflow JSON that’s safe to share (IDs are placeholders).
 
+<img width="1510" height="795" alt="image" src="https://github.com/user-attachments/assets/3a2a5a7c-fef4-4481-97ba-e3839c6f6cf6" />
+
 ---
 
 ## Overview
